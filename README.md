@@ -1,0 +1,1 @@
+# Solar_radiation_Predictor_App
