@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Solar Radiation Intensity Forcasting</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css"> 
+
+
+  
+<style>
+  ::placeholder {
+    color:rgb(13, 13, 14);
+    opacity:0.8; /* Firefox */
+    font-weight: bold;
+  }
+  </style>
+  
+</head>
+<body style="background-image: url('{{ url_for('static', filename='solar.jpg') }}');
+background-repeat:no-repeat;
+background-size:cover;
+height:100vh;
+display:flex;
+">
+
+ <div class="login">
+	<h1>Predict Solar Radiation</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form name="myform" action="{{ url_for('predict')}}"method="post" onsubmit="return(validateform());">
+        <input type="text"  name="year" placeholder="year" required="required" /><br>
+        <input type="text"  name="month" placeholder="month" required="required" /><br>
+        <input type="text" name="day" placeholder="day" required="required" /><br>
+        <input type="text" name="hour" placeholder="hour" required="required" /><br>
+        <input type="text"  name="minute" placeholder="minute" required="required" /><br>
+        <input type="text" name="cloudtype" placeholder="cloudtype" required="required" /><br>
+        <input type="text" name="dewpoint" placeholder="dewpoint" required="required" /><br>
+        <input type="text" name="solarzenithangle" placeholder="solarzenithangle" required="required" /><br>
+        <input type="text" name="surfacealdebo" placeholder="surfacealdebo" required="required" /><br>
+        <input type="text" name="windspeed" placeholder="windspeed" required="required" /><br>
+        <input type="text" name="precwater" placeholder="precwater" required="required" /><br>
+        <input type="text" name="winddirection" placeholder="winddirection" required="required" /><br>
+        <input type="text" name="relativehumidity" placeholder="relativehumidity" required="required" /><br>
+        <input type="text" name="temperature" placeholder="temperature" required="required" /><br>
+        <input type="text" name="pressure" placeholder="pressure" required="required" /><br>
+
+       
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="margin-top: 10px; text-align:center;">Predict</button>
+
+        
+        <!--<a href="visual" class="btn btn-primary btn-block btn-large" style="text-decoration: none;">Visualize</a>-->
+    </form>
+    <div class = "new">
+     <b><p>Predicted Solar Radiation Intensity</p> <p>{{ prediction_text }}<br></p></b>
+     </div>
+ </div>
+
+</body>
+</html>
